@@ -26,19 +26,18 @@ def is_palindrome(text):
 # digit_match
 def digit_match(num1, num2):
     #base case:
-    if not num1 and not num2:
+    if not num1 and not num2: # both are 0
         return 1
-    if not num1 or not num2:
-        return 0
-    current_match = 0
-    
-    if num1 < 10 and num2 < 10:
-        if num1 % 10 == num2 % 10:
+    if num1 < 10 or num2 < 10: # one or both digit num
+        if num1 % 10 == num2 % 10:        
             return 1
         else:
             return 0
-    else:
-        if num1 % 10 == num2 % 10:
-            current_match = 1
-    return digit_match(num1 // 10, num2 // 10) + current_match
+    
+    # recursive case:
+    if num1 % 10 == num2 % 10: 
+        return digit_match(num1 // 10, num2 // 10) + 1
+        
+    return digit_match(num1 // 10, num2 // 10)
+
 
